@@ -1,1 +1,0 @@
-// api.openweathermap.org/data/2.5/weather?q=antwerp&appid=5b4da8dc948e3009f9de2efdec3ef3f6
