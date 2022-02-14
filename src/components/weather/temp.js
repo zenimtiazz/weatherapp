@@ -1,10 +1,26 @@
 // api.openweathermap.org/data/2.5/weather?q=antwerp&appid=5b4da8dc948e3009f9de2efdec3ef3f6
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import './style.css';
 
 
 const Temp = () => {
   const[searchValue,setSearchValue]=useState('antwerp');
+  const getWeatherInfo= async()=>{
+    try {
+      let url= 
+      `https://api.openweathermap.org/data/2.5/weather?q=${searchValue}&appid=5b4da8dc948e3009f9de2efdec3ef3f6 `;    
+       const res = await fetch(url);
+      const data= await res.json();
+      console.log(data);
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getWeatherInfo();
+  }, [])
+  
 
   return (
     <>
