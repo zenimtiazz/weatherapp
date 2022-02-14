@@ -18,7 +18,16 @@ const Temp = () => {
         </div>
 
     </div>
-    <article className='widget'></article>
+    <article className='widget'>
+      <div className='weatherIcon'>
+        <i className={'wi wi-day-sunny'}></i>
+      </div>
+      <div className='weatherInfo'>
+        <div className='temperature'>
+          <span>25.5&deg;</span>
+        </div>
+      </div>
+    </article>
     </>
   )
 }
