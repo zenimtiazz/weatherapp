@@ -10,7 +10,7 @@ const Temp = () => {
   const getWeatherInfo= async()=>{
     try {
       let url= 
-      `https://api.openweathermap.org/data/2.5/weather?q=${searchValue}&units=metric&appid=5b4da8dc948e3009f9de2efdec3ef3f6 `;    
+      `https://api.openweathermap.org/data/2.5/weather?q=${searchValue}&units=metric&appid=6b0bb36a65a2ea53bbe36d3ca6f40e8c `;    
        const res = await fetch(url);
       const data= await res.json();
       const{temp,humidity,pressure} = data.main;
@@ -36,7 +36,7 @@ setTempInfo(myNewWeatherInfo);
   };
   useEffect(() => {
     getWeatherInfo();
-  }, [])
+  });
   
 
   return (

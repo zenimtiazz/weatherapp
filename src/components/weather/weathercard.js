@@ -14,13 +14,13 @@ const Weathercard = ({tempInfo}) => {
         useEffect(()=>{
             if(weathermood){
 switch (weathermood) {
-    case 'clouds':
+    case 'Clouds':
         setWeatherState('wi-day-cloudy')
         break;
         case 'Haze':
-            setWeatherState('wi-day-fog')
+            setWeatherState('wi-fog')
             break;
-            case 'clear':
+            case 'Clear':
                 setWeatherState('wi-day-sunny')
                 break;
 
