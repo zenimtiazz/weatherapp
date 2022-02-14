@@ -1,9 +1,11 @@
 // api.openweathermap.org/data/2.5/weather?q=antwerp&appid=5b4da8dc948e3009f9de2efdec3ef3f6
-import React from 'react'
+import React, { useState } from 'react'
 import './style.css';
 
 
 const Temp = () => {
+  const[searchValue,setSearchValue]=useState('antwerp');
+
   return (
     <>
     <div className='wrap'>
@@ -12,8 +14,9 @@ const Temp = () => {
             placeholder='search...'
             autoFocus
             id='search' 
-            className='searchTerm'/>
-            <button className='searchButton' type='button'>Search</button>
+            className='searchTerm' value={searchValue}
+            onChange={(e)=>setSearchValue(e.target.value)}/>
+            <button className='searchButton' type='button' onClick={getWeatherInfo}>Search</button>
 
         </div>
 
@@ -52,7 +55,7 @@ const Temp = () => {
             <p className='extra-info-leftside'>19:19 <br /> Pressure</p>
           </div>
           <div className='two-sided-section'>
-            <p><i className={'wi wi-wind'}></i></p>
+            <p><i className={'wi wi-strong-wind'}></i></p>
             <p className='extra-info-leftside'>19:19 <br /> Speed</p>
           </div>
         </div>
