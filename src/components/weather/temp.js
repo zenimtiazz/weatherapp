@@ -1,17 +1,34 @@
 // api.openweathermap.org/data/2.5/weather?q=antwerp&appid=5b4da8dc948e3009f9de2efdec3ef3f6
 import React, { useState,useEffect } from 'react'
 import './style.css';
+import Weathercard from './weathercard';
 
 
 const Temp = () => {
   const[searchValue,setSearchValue]=useState('antwerp');
+  const[tempInfo,setTempInfo]=useState({});
   const getWeatherInfo= async()=>{
     try {
       let url= 
-      `https://api.openweathermap.org/data/2.5/weather?q=${searchValue}&appid=5b4da8dc948e3009f9de2efdec3ef3f6 `;    
+      `https://api.openweathermap.org/data/2.5/weather?q=${searchValue}&units=metric&appid=5b4da8dc948e3009f9de2efdec3ef3f6 `;    
        const res = await fetch(url);
       const data= await res.json();
-      console.log(data);
+      const{temp,humidity,pressure} = data.main;
+      const{main:weathermood}=data.weather[0];
+      const{name}=data;
+      const{speed}=data.wind;
+      const{country,sunset}=data.sys;
+const myNewWeatherInfo ={
+  temp,
+  humidity,
+  pressure,
+  weathermood,
+  name,
+  speed,
+  country,
+  sunset
+}
+setTempInfo(myNewWeatherInfo);
 
     } catch (error) {
       console.log(error);
@@ -37,46 +54,7 @@ const Temp = () => {
         </div>
 
     </div>
-    <article className='widget'>
-      <div className='weatherIcon'>
-        <i className={'wi wi-day-sunny'}></i>
-      </div>
-      <div className='weatherInfo'>
-        <div className='temperature'>
-          <span>25.5&deg;</span>
-        </div>
-        <div className='descrption'>
-          <div className='weatherCondition'>
-            Sunny
-          </div>
-          <div className='place'>Antwerp, Belgium</div>
-          </div>
-      </div>
-      <div className='date'>{ new Date().toLocaleString()}</div>
-      {/* our four column section  */}
-      <div className='extra-temp'>
-        <div className='temp-info-minmax'>
-          <div className='two-sided-section'>
-            <p><i className={'wi wi-sunset'}></i></p>
-            <p className='extra-info-leftside'>19:19 <br /> sunset</p>
-          </div>
-          <div className='two-sided-section'>
-            <p><i className={'wi wi-humidity'}></i></p>
-            <p className='extra-info-leftside'>19:19 <br /> Humidity</p>
-          </div>
-        </div>
-        <div className='weather-extra-info'>
-        <div className='two-sided-section'>
-            <p><i className={'wi wi-rain'}></i></p>
-            <p className='extra-info-leftside'>19:19 <br /> Pressure</p>
-          </div>
-          <div className='two-sided-section'>
-            <p><i className={'wi wi-strong-wind'}></i></p>
-            <p className='extra-info-leftside'>19:19 <br /> Speed</p>
-          </div>
-        </div>
-      </div>
-    </article>
+    <Weathercard tempInfo={tempInfo} />
     </>
   )
 }
